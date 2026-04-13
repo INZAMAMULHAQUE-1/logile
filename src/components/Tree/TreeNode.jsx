@@ -1,11 +1,11 @@
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useState, useRef, useEffect, useCallback, memo } from 'react';
 import { formatSize } from './treeUtils.js';
 
 /**
  * TreeNode component — renders a single node in the file explorer tree.
  * Supports expand/collapse, selection, inline rename, drag & drop, and context menu.
  */
-export default function TreeNode({
+const TreeNode = memo(function TreeNode({
   node,
   depth,
   expandedIds,
@@ -202,7 +202,7 @@ export default function TreeNode({
       </div>
 
       {/* Render children if folder is expanded */}
-      {isFolder && isExpanded && hasChildren && (
+      {isFolder && isExpanded && hasChildren && depth < 50 && (
         <div className="tree-node-children" role="group">
           {node.children.map((child) => (
             <TreeNode
@@ -227,4 +227,6 @@ export default function TreeNode({
       )}
     </div>
   );
-}
+});
+
+export default TreeNode;

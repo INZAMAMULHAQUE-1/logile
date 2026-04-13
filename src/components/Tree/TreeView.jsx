@@ -1,10 +1,10 @@
-import { useState, useCallback, useEffect, useRef } from 'react';
+import { useState, useCallback, useEffect, useRef, memo } from 'react';
 import TreeNode from './TreeNode.jsx';
 
 /**
  * TreeView component — renders the full file explorer tree with context menu support.
  */
-export default function TreeView({
+const TreeView = memo(function TreeView({
   tree,
   expandedIds,
   selectedId,
@@ -120,4 +120,6 @@ export default function TreeView({
       )}
     </div>
   );
-}
+});
+
+export default TreeView;

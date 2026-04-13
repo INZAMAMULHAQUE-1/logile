@@ -1,9 +1,9 @@
-import { useCallback } from 'react';
+import { useCallback, memo } from 'react';
 
 /**
  * SearchBar component — renders a search input for filtering the file tree.
  */
-export default function SearchBar({ value, onChange }) {
+const SearchBar = memo(function SearchBar({ value, onChange }) {
   const handleChange = useCallback(
     (e) => {
       onChange(e.target.value);
@@ -37,4 +37,6 @@ export default function SearchBar({ value, onChange }) {
       )}
     </div>
   );
-}
+});
+
+export default SearchBar;
